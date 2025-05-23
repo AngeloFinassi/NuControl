@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block main %}
+    <div id="files">
+
+        {% include "partials/uploads_list.html"%}
+
+        </div>
+        <div id="file_date">
+            {% if table_data and headers%}
+            <table id="date">
+                <thead>
+                    <tr>
+                        {% for header in headers %}
+                            <th>{{ header }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in table_data%}
+                    <tr>
+                        {% for header in headers%}
+                            <th>{{ row[header] }}</th>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% endif %} 
+        </div>
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">Upload</button>
+    </form>
+    
+    
+{% endblock %}

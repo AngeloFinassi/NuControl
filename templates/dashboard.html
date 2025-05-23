@@ -1,0 +1,33 @@
+<div>
+  <canvas id="myChart"></canvas> <!-- Corrigido: id preenchido -->
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: {{ labels | tojson }},  // Corrigido: sem vírgula extra
+      datasets: [{
+        label: 'Ocorrências por categoria',
+        data: {{ data | tojson }},    // Corrigido: sem vírgula extra
+        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        borderColor: 'rgba(75, 192, 192, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            stepSize: 1  // opcional: melhora visualização se valores forem inteiros
+          }
+        }
+      }
+    }
+  });
+</script>
