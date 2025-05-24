@@ -1,9 +1,0 @@
-flask
-pandas
-openpyxl
-xlrd
-matplotlib
-plotly
-sqlalchemy
-jinja2
-requests
