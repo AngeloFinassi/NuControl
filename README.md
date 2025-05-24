@@ -57,24 +57,6 @@ Dashboard:
 
 -HTML/CSS
 
-## Estrutura do Projeto
-
-/project-root
-│
-├── app.py                # Arquivo principal Flask
-├── helpers.py            # Funções auxiliares como leitura de arquivo e categorização
-├── db.py                 # Interface com SQLite
-├── templates/            # HTML (Jinja2)
-│   ├── index.html
-│   ├── login.html
-│   ├── register.html
-│   └── dashboard.html
-|   └── ...
-├── static/               # CSS
-├── users/uploads/user_id # Armazenamento dos arquivos dos usuários
-├── databse.db            # banco de dados do projeto
-└── README.md             # Este arquivo
-
 ## Como Rodar Localmente
 Clone o repositório:
 
