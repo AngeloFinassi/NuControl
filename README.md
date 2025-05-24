@@ -19,10 +19,11 @@ Um app web feito com Flask que permite que usuários façam upload de extratos b
 ## Formato Esperado da Planilha
 A planilha **deve seguir este formato exato**, para que o dasboard funcione adequadamente, pois a interação planilha e backend foi baseada num modelo.
 
-data	      categoria	    descricao	      valor
-2025-05-10	Alimentação	  ...iFood	      -35.90
-2025-05-10	Salário	      ...Empresa X	  3000.00
-2025-05-11	Transporte	  ...Uber	        -12.50
+| data       | categoria   | descricao | valor   |
+| ---------- | ----------- | --------- | ------- |
+| 2025-05-10 | Alimentação | iFood     | -35.90  |
+| 2025-05-10 | Salário     | Empresa X | 3000.00 |
+| 2025-05-11 | Transporte  | Uber      | -12.50  |
 
 Observações:
 
@@ -32,30 +33,32 @@ Os valores negativos representam despesas, e os positivos representam receitas.
 
 **Arquivos diferentes de .csv são lidos e salvos como csv**
 
-Imagens do Projeto
+## Imagens do Projeto
 Tela de Upload:
+![image](https://github.com/user-attachments/assets/2c45a314-361b-40ec-88e1-7e0b5e881f10)
 
-📈 Dashboard:
+Dashboard:
+![image](https://github.com/user-attachments/assets/b8dfa355-52d4-4aac-8e1e-e03f4bb137e2)
 
-🛠️ Tecnologias Usadas
-Python 3.10+
+## Tecnologias Usadas
+-Python 3.10+
 
-Flask
+-Flask
 
-Flask-Session
+-Flask-Session
 
-SQLite3
+-SQLite3
 
-Pandas / Numpy
+-Pandas / Numpy
 
-Jinja2 (templates)
+-Chart.js
 
-HTML/CSS (básico)
+-Jinja2
 
-🧠 Estrutura do Projeto
-bash
-Copiar
-Editar
+-HTML/CSS
+
+## Estrutura do Projeto
+
 /project-root
 │
 ├── app.py                # Arquivo principal Flask
@@ -66,47 +69,41 @@ Editar
 │   ├── login.html
 │   ├── register.html
 │   └── dashboard.html
-├── static/               # Imagens, CSS, JS
-├── users/uploads/        # Armazenamento dos arquivos dos usuários
-└── README.md             # Este lindo arquivo
-🧪 Como Rodar Localmente
+|   └── ...
+├── static/               # CSS
+├── users/uploads/user_id # Armazenamento dos arquivos dos usuários
+├── databse.db            # banco de dados do projeto
+└── README.md             # Este arquivo
+
+## Como Rodar Localmente
 Clone o repositório:
 
-bash
-Copiar
-Editar
-git clone https://github.com/seu-usuario/finance-dashboard.git
-cd finance-dashboard
+
+`https://github.com/AngeloFinassi/NuControl`
+`cd NuControl`
+
 Instale as dependências (use um virtualenv se quiser):
+``
 
-bash
-Copiar
-Editar
-pip install -r requirements.txt
-Crie a estrutura do banco de dados:
+`pip install -r requirements.txt`
 
-bash
-Copiar
-Editar
-python db.py
-Inicie o servidor:
+Inicie o servidor (local do próprio Flask):
+`python app.py`
 
-bash
-Copiar
-Editar
-python app.py
 Acesse o app em: http://127.0.0.1:5000
 
-✅ Requisitos
-Python 3.10+
+## Requisitos
+-Python 3.10+
 
-Navegador moderno
+-Navegador
 
-Planilha no formato correto!
+-Planilha no formato correto!
 
-🔐 Segurança
+## Segurança
 As senhas são salvas com hash (generate_password_hash).
 
 Uploads são organizados por usuário e salvos com nomes seguros.
 
 Apenas usuários autenticados podem visualizar seus arquivos e dashboard.
+
+Não há SQLinjection nos inputs da aplicação web, todos os Querys são formatados seguindo padrões de segurança.
