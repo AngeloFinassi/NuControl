@@ -1,0 +1,196 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block main %}
+
+<!-- 
+CSS in page because bootstrap is overlapping the static/style.css, for be a unique style, I decide to put style on this html file, for maintain a specific style for the dasboard page, don't mix the CSS
+-->
+
+<style>
+.card {
+    background: var(--card-bg);
+    border-radius: var(--card-radius);
+    box-shadow: var(--card-shadow);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card h3 {
+    margin: 0 0 8px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.money {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111;
+}
+
+.totais-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.graficos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 24px;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    {% include "partials/uploads_list.html" %}
+    
+    {% if dashboard_show %}
+    <h1>Dashboard Financeiro 💰</h1>
+
+    <!-- Totais -->
+    <div class="totais-grid">
+        <div class="card total">
+            <h3 style="color: #d9534f;"><i class="bi bi-arrow-down-circle-fill"></i> Total Saída</h3>
+            <p class="money">R$ {{ "%.2f"|format(total_out) }}</p>
+        </div>
+        <div class="card total">
+            <h3 style="color: #5cb85c;"><i class="bi bi-arrow-up-circle-fill"></i> Total Entrada</h3>
+            <p class="money">R$ {{ "%.2f"|format(total_in) }}</p>
+        </div>
+    </div>
+
+    <!-- Gráficos -->
+    <div class="graficos-grid">
+        <div class="card grafico"><canvas id="barChart"></canvas></div>
+        <div class="card grafico"><canvas id="pieChart"></canvas></div>
+        <div class="card grafico"><canvas id="lineChart"></canvas></div>
+    </div>
+    {% endif %}
+
+    {% if dashboard_show %}
+    <script>
+        const labels = {{ labels|tojson }};
+        const data = {{ data|tojson }};
+
+
+        console.log("Categorias:", labels);
+        console.log("Valores:", data);
+
+        const baseColors = [
+            'rgba(75,192,192,0.7)',
+            'rgba(255,99,132,0.7)',
+            'rgba(255,206,86,0.7)',
+            'rgba(153,102,255,0.7)',
+            'rgba(54,162,235,0.7)',
+            'rgba(255,159,64,0.7)',
+            'rgba(201,203,207,0.7)'
+        ];
+        const bgColors = labels.map((_, i) => baseColors[i % baseColors.length]);
+        const brdColors = bgColors.map(c => c.replace('0.7', '1'));
+
+        if (labels.length && data.length) {
+            new Chart(document.getElementById('barChart'), {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: 'Total por Categoria (R$)',
+                        data,
+                        backgroundColor: bgColors,
+                        borderColor: brdColors,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => 'R$ ' + ctx.parsed.y.toLocaleString('pt-BR', { minimumFractionDigits: 2 })
+                            }
+                        },
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { callback: val => 'R$ ' + val.toLocaleString('pt-BR') },
+                            title: { display: true, text: 'Valor (R$)' }
+                        }
+                    }
+                }
+            });
+
+            const total = data.reduce((acc, val) => acc + val, 0);
+            const percent = data.map(v => +((v / total) * 100).toFixed(2));
+
+            new Chart(document.getElementById('pieChart'), {
+                type: 'pie',
+                data: {
+                    labels: labels.map((l, i) => `${l} (${percent[i]}%)`),
+                    datasets: [{
+                        data: percent,
+                        backgroundColor: bgColors,
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => `${ctx.label}: ${ctx.parsed.toFixed(2)}%`
+                            }
+                        },
+                        legend: { position: 'right' }
+                    }
+                }
+            });
+
+            new Chart(document.getElementById('lineChart'), {
+                type: 'line',
+                data: {
+                    labels,
+                    datasets: [{
+                        label: 'Tendência',
+                        data,
+                        borderColor: '#36a2eb',
+                        backgroundColor: 'rgba(54,162,235,0.2)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: ctx => 'R$ ' + ctx.parsed.y.toLocaleString('pt-BR', { minimumFractionDigits: 2 })
+                            }
+                        },
+                        legend: { display: true }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { callback: val => 'R$ ' + val.toLocaleString('pt-BR') },
+                            title: { display: true, text: 'Valor (R$)' }
+                        }
+                    }
+                }
+            });
+
+        }
+    </script>
+    {% endif %}
+{% endblock %}
