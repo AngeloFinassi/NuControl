@@ -60,12 +60,13 @@ Dashboard:
 ## Como Rodar Localmente
 Clone o repositório:
 
-
 `https://github.com/AngeloFinassi/NuControl`
+
+Entrando na pasta do repositório
+
 `cd NuControl`
 
 Instale as dependências (use um virtualenv se quiser):
-``
 
 `pip install -r requirements.txt`
 
