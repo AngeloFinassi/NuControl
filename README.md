@@ -1,46 +1,49 @@
-## NuControl
-Um app web feito com Flask que permite que usuários façam upload de extratos bancários para uma visualização dos dados em formato de tabela e vejam gráficos de receitas e despesas categorizadas.
+## **NuControl**
+A web app built with Flask that allows users to upload bank statements for data visualization in table format and view categorized income and expense charts.
 
-## Funcionalidades
--Registro e login de usuários
+## Features
+-User registration and login
 
--Upload de arquivos de diferentes formatos (csv, xlsx, xls, tsv, json)
+-Upload files in different formats (csv, xlsx, xls, tsv, json)
 
--Armazenamento separado por usuário 
+-Separate storage per user
 
--Banco com dados dos usuários e planilhas
+-Database with user and spreadsheet data
 
--Visualização de dados em tabela
+-Table data visualization
 
--Dashboard com gráficos sobre a planilha
+-Dashboard with charts based on the spreadsheet
 
--Deletar arquivos no sistema
+-Delete files from the system
 
-## Formato Esperado da Planilha
-A planilha **deve seguir este formato exato**, para que o dasboard funcione adequadamente, pois a interação planilha e backend foi baseada num modelo.
+## Expected Spreadsheet Format
+The spreadsheet must follow this exact format for the dashboard to work properly, as the spreadsheet-backend interaction was based on a model.
 
-| data       | categoria   | descricao | valor   |
-| ---------- | ----------- | --------- | ------- |
-| 2025-05-10 | Alimentação | iFood     | -35.90  |
-| 2025-05-10 | Salário     | Empresa X | 3000.00 |
-| 2025-05-11 | Transporte  | Uber      | -12.50  |
+| data       | categoria | descrição   | valor   |
+| ---------- | --------- | ----------- | ------- |
+| 2025-05-10 | Food      | iFood       | -35.90  |
+| 2025-05-10 | Salary    | Company X   | 3000.00 |
+| 2025-05-11 | Transport | Uber        | -12.50  |
 
-Observações:
 
-Os nomes das colunas devem estar exatamente como mostrado acima (sem acentos).
+Notes:
 
-Os valores negativos representam despesas, e os positivos representam receitas.
+The column names must be exactly as shown above (no accents).
 
-**Arquivos diferentes de .csv são lidos e salvos como csv**
+Negative values represent expenses, and positive values represent income.
 
-## Imagens do Projeto
-Tela de Upload:
-![image](https://github.com/user-attachments/assets/2c45a314-361b-40ec-88e1-7e0b5e881f10)
+Files other than .csv are read and saved as csv.
+
+## Project Images
+Upload Screen:
+![image](https://github.com/user-attachments/assets/6e717f32-77b1-47df-906d-1776720d1d1a)
+
 
 Dashboard:
-![image](https://github.com/user-attachments/assets/b8dfa355-52d4-4aac-8e1e-e03f4bb137e2)
+![image](https://github.com/user-attachments/assets/ff0a5bb8-a615-4e31-8690-805cd2e2223c)
 
-## Tecnologias Usadas
+
+## Technologies Used
 -Python 3.10+
 
 -Flask
@@ -57,36 +60,37 @@ Dashboard:
 
 -HTML/CSS
 
-## Como Rodar Localmente
-Clone o repositório:
+## How to Run Locally
+Clone the repository:
 
 `https://github.com/AngeloFinassi/NuControl`
 
-Entrando na pasta do repositório
+Enter the project folder:
 
 `cd NuControl`
 
-Instale as dependências (use um virtualenv se quiser):
+Install dependencies (use a virtualenv if you like):
 
 `pip install -r requirements.txt`
 
-Inicie o servidor (local do próprio Flask):
+Start the server (Flask's local server):
+
 `python app.py`
 
-Acesse o app em: http://127.0.0.1:5000
+Access the app at: http://127.0.0.1:5000
 
-## Requisitos
+## Requirements
 -Python 3.10+
 
--Navegador
+-Browser
 
--Planilha no formato correto!
+-Spreadsheet in the correct format!
 
-## Segurança
-As senhas são salvas com hash (generate_password_hash).
+## Security
+Passwords are saved using hash (generate_password_hash).
 
-Uploads são organizados por usuário e salvos com nomes seguros.
+Uploads are organized by user and saved with secure names.
 
-Apenas usuários autenticados podem visualizar seus arquivos e dashboard.
+Only authenticated users can view their files and dashboard.
 
-Não há SQLinjection nos inputs da aplicação web, todos os Querys são formatados seguindo padrões de segurança.
+There is no SQL injection in the web app inputs, all queries are formatted following security standards.
