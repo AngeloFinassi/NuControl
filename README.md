@@ -19,11 +19,11 @@ A web app built with Flask that allows users to upload bank statements for data 
 ## Expected Spreadsheet Format
 The spreadsheet must follow this exact format for the dashboard to work properly, as the spreadsheet-backend interaction was based on a model.
 
-| data       | categoria | descrição   | valor   |
-| ---------- | --------- | ----------- | ------- |
-| 2025-05-10 | Food      | iFood       | -35.90  |
-| 2025-05-10 | Salary    | Company X   | 3000.00 |
-| 2025-05-11 | Transport | Uber        | -12.50  |
+| data       | descrição  | valor   |
+| ---------- | ---------- | ------- |
+| 2025-05-10 | iFood      | -35.90  |
+| 2025-05-10 | Company X  | 3000.00 |
+| 2025-05-11 | Uber       | -12.50  |
 
 
 Notes:
