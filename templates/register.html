@@ -1,14 +1,27 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Register
+Register
 {% endblock %}
 
 {% block main %}
-    <form action="/register" method="post">
-        <input type="text" placeholder="Username" name="name">
-        <input type="text" placeholder="Password" name="password">
-        <input type="text" placeholder="Password (again)" name="confirmation">
-        <button type="submit">Register</button>
+<div class="d-flex justify-content-center vh-100">
+  <div class="w-100" style="max-width: 380px;">
+    <h3 class="text-center text-primary mb-4">Register</h3>
+    <form action="/register" method="POST">
+      <div class="mb-3">
+        <input type="text" class="form-control" name="name" placeholder="Usuário" required>
+      </div>
+      <div class="mb-3">
+        <input type="password" class="form-control" name="password" placeholder="Senha" required>
+      </div>
+      <div class="mb-3">
+        <input type="password" class="form-control" name="confirmation" placeholder="Confirme a senha" required>
+      </div>
+      <div class="d-grid">
+        <button type="submit" class="btn btn-primary">Entrar</button>
+      </div>
     </form>
+  </div>
+</div>
 {% endblock %}

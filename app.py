@@ -1,4 +1,3 @@
-from email import header
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from helpers import apology, login_required, read_file, categorize_dataframe
