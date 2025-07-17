@@ -2,7 +2,6 @@
 from flask import redirect, render_template, session
 from functools import wraps
 import pandas as pd
-import numpy as np
 
 def apology(message, protocol):
     #render message as as apology to user

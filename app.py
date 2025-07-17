@@ -1,10 +1,10 @@
+from time import strftime
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from helpers import apology, login_required, read_file, categorize_dataframe
 from werkzeug.utils import secure_filename
 from werkzeug.security import check_password_hash, generate_password_hash
-import pandas as pd
-import numpy as np
+from datetime import datetime
 import os
 import db
 
@@ -96,7 +96,8 @@ def upload():
     filename = secure_filename(file.filename.lower())
     
     base_filename = os.path.splitext(filename)[0]
-    csv_filename = base_filename + ".csv"
+    timestamp = datetime.now().strftime("%M%S")
+    csv_filename = base_filename + '_' + timestamp + ".csv"
 
     df = read_file(file, filename)
     if df is None:
@@ -104,6 +105,7 @@ def upload():
     
     #Save on database and add a copy on the filepath, to work later
     path = (f"users/uploads/user_{user_id}")
+    
     os.makedirs(path, exist_ok=True)
     filepath = os.path.join(path, csv_filename)
 
@@ -151,12 +153,12 @@ def filetable():
 @login_required
 def delete_file():
     user_id = session["user_id"]
-    filename = request.form.get("filename")
+    file_id = request.form.get("file_id")
 
-    if not filename:
-        return apology("Missing filename", 400)
+    if not file_id:
+        return apology("Missing file", 400)
 
-    row = db.execute("SELECT filepath FROM uploads WHERE user_id = ? AND filename = ?", (user_id, filename), fetchone=True)
+    row = db.execute("SELECT filepath FROM uploads WHERE user_id = ? AND id = ?", (user_id, file_id), fetchone=True)
     if row is None:
         return apology("Arquivo não encontrado", 404)
 
@@ -171,7 +173,7 @@ def delete_file():
         return apology(f"Erro to delete the file: {str(e)}", 500)
 
     #remove the file from database and the local folder
-    db.execute("DELETE FROM uploads WHERE user_id = ? AND filename = ?", (user_id, filename), commit=True)
+    db.execute("DELETE FROM uploads WHERE user_id = ? AND id = ?", (user_id, file_id), commit=True)
 
     flash("Arquivo deletado com sucesso!")
     return redirect("/")

@@ -17,7 +17,7 @@ A web app built with Flask that allows users to upload bank statements for data 
 -Delete files from the system
 
 ## Expected Spreadsheet Format
-The spreadsheet must follow this exact format for the dashboard to work properly, as the spreadsheet-backend interaction was based on a model.
+The spreadsheet must follow this exact format for the dashboard to work properly, as the spreadsheet-backend interaction was based on a model. there is a 'example.csv' showing how must being the file
 
 | data       | descrição  | valor   |
 | ---------- | ---------- | ------- |

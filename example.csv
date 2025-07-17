@@ -1,0 +1,32 @@
+data,valor,descricao,identificador
+01/01/2025,-150.75,Compra no débito – Supermercado,-A1
+02/01/2025,200.00,Transferência recebida pelo TED,-B2
+03/01/2025,-40.00,Lanche – Padaria,-C3
+04/01/2025,75.50,Reembolso devolução de compra,-D4
+05/01/2025,-12.30,Assinatura de streaming,-E5
+06/01/2025,1200.00,Salário,-F6
+07/01/2025,-250.00,Pagamento de fatura do cartão,-G7
+08/01/2025,-60.00,Posto de gasolina,-H8
+09/01/2025,-300.00,Transferência enviada pelo Pix,-I9
+10/01/2025,300.00,Transferência recebida pelo Pix,-J10
+11/01/2025,-27.45,Compra no débito – Farmácia,-K11
+12/01/2025,-5.00,Doação online,-L12
+13/01/2025,50.00,Venda de item usado,-M13
+14/01/2025,-100.00,Compra no débito – Roupas,-N14
+15/01/2025,15.99,Cupom cashback,-O15
+16/01/2025,-89.90,Compra de criptmoedas,-P16
+17/01/2025,95.00,Resgate de criptmoedas,-Q17
+18/01/2025,-33.00,Bar e restaurante,-R18
+19/01/2025,500.00,Transferência recebida pelo TED,-S19
+20/01/2025,-47.80,Compra no débito – Mercado Orgânico,-T20
+21/01/2025,-22.50,Uber,-U21
+22/01/2025,120.00,Prêmio bônus,-V22
+23/01/2025,-144.00,Mensalidade de academia,-W23
+24/01/2025,-320.00,Compra no débito – Eletrodomésticos,-X24
+25/01/2025,320.00,Reembolso de compra,-Y25
+26/01/2025,-180.00,Transferência enviada pelo Pix,-Z26
+27/01/2025,180.00,Transferência recebida pelo Pix,-AA27
+28/01/2025,-8.90,Assinatura de app,-AB28
+29/01/2025,65.00,Cashback de cartão,-AC29
+30/01/2025,-399.99,Compra no débito – Eletrônicos,-AD30
+31/01/2025,399.99,Devolução de eletrônicos,-AE31
