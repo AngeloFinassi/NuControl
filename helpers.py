@@ -157,7 +157,7 @@ def categorize_dataframe(df):
         'diverso', 'outro', 'não identificado', 'desconhecido'
     ]
 }
-
+    #Serch for a category based on some 'keys' words.
     def find_category(desc: str) -> str:
         desc = str(desc).lower()
         for cat, keywords in category.items():
@@ -165,7 +165,7 @@ def categorize_dataframe(df):
                 return cat
         return "outros"
 
-    # 🔑 garante que a coluna esteja numérica
+    #garante que a coluna esteja numérica
     df["valor"] = pd.to_numeric(df["valor"], errors="coerce").fillna(0)
 
     df["categoria"] = df["descricao"].apply(find_category)
