@@ -24,6 +24,7 @@ def login():
         name = request.form.get("name")
         password = request.form.get("password")
 
+        #Filter the login part, to don't expose the db
         if not name:
             return apology("Please insert a name", 403)
         if not password:
@@ -47,6 +48,7 @@ def register():
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
 
+        #The same as login, but with confirmation
         if not name:
             return apology("must provide username", 400)
         elif not password:
@@ -85,6 +87,7 @@ def index():
 
 @app.route("/upload", methods=["POST"])
 @login_required
+
 def upload():
     user_id = session["user_id"]
 
@@ -182,13 +185,15 @@ from helpers import categorize_dataframe
 
 @app.route("/dashboard", methods=["GET", "POST"])
 @login_required
+
 def dashboard():
     user_id = session["user_id"]
     uploads_file = db.execute(
         "SELECT filename, id, filepath FROM uploads WHERE user_id = ?",
         (user_id,), fetchall=True
     )
-
+    
+    # Changes the html content depending on certain variables
     if not uploads_file:
         return render_template(
             "dashboard.html",
